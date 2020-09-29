@@ -27,7 +27,7 @@ Since recall = TP / (TP + FN), if recall is closer to 1, FN is approximately cer
 
 ### 2. Algorithm Design and Function
 
-![Captura de pantalla 2020-09-29 a las 14.08.29](/Users/mercedes/Library/Application Support/typora-user-images/Captura de pantalla 2020-09-29 a las 14.08.29.png)
+![Captura de pantalla 2020-09-29 a las 14.08.29](FDA_Submission_Pneumonia.assets/Captura de pantalla 2020-09-29 a las 14.08.29.png)
 
 **DICOM Checking Steps:** When an image is fed into the algorithm, the ``check_dicom`` function reads the DICOM file and checks the important fields for our device (Body part examinated, modality and patient position). If the image is from the CHEST, in modality DX and taken in a PA or AP position, then the DICOM image (as a pixel array) is returned. 
 
@@ -35,13 +35,13 @@ Since recall = TP / (TP + FN), if recall is closer to 1, FN is approximately cer
 
 **CNN Architecture:** This algorithm is build over the first 17 layers of a pretrained model (VGG16 architecture): 
 
-![Captura de pantalla 2020-09-29 a las 13.57.25](/Users/mercedes/Desktop/Captura de pantalla 2020-09-29 a las 13.57.25.png)
+![Captura de pantalla 2020-09-29 a las 13.57.25](FDA_Submission_Pneumonia.assets/Captura de pantalla 2020-09-29 a las 13.57.25.png)
 
 
 
 Then, the following layers were added: flattening layer, three dropouts (at 0.5) to prevent overfitting, and three dense layers (of 512, 256 and 1 parameters, both firsts relu, and the last one a sigmoid). 
 
-![Captura de pantalla 2020-09-29 a las 13.47.10](/Users/mercedes/Desktop/Captura de pantalla 2020-09-29 a las 13.47.10.png)
+![Captura de pantalla 2020-09-29 a las 13.47.10](FDA_Submission_Pneumonia.assets/Captura de pantalla 2020-09-29 a las 13.47.10.png)
 
 
 
@@ -51,7 +51,7 @@ Then, the following layers were added: flattening layer, three dropouts (at 0.5)
 **Parameters:**
 * Types of augmentation used during training:
 
-   ![Captura de pantalla 2020-09-29 a las 14.09.57](/Users/mercedes/Library/Application Support/typora-user-images/Captura de pantalla 2020-09-29 a las 14.09.57.png)
+   ![Captura de pantalla 2020-09-29 a las 14.09.57](FDA_Submission_Pneumonia.assets/Captura de pantalla 2020-09-29 a las 14.09.57.png)
 
 * Batch size:
 
@@ -75,15 +75,15 @@ Then, the following layers were added: flattening layer, three dropouts (at 0.5)
 
 ### Algorithm training performance visualization   
 
-![Captura de pantalla 2020-09-29 a las 14.13.08](/Users/mercedes/Library/Application Support/typora-user-images/Captura de pantalla 2020-09-29 a las 14.13.08.png)
+![Captura de pantalla 2020-09-29 a las 14.13.08](FDA_Submission_Pneumonia.assets/Captura de pantalla 2020-09-29 a las 14.13.08.png)
 
 ### Insert P-R curve 
 
-![Captura de pantalla 2020-09-29 a las 14.13.23](/Users/mercedes/Library/Application Support/typora-user-images/Captura de pantalla 2020-09-29 a las 14.13.23.png)
+![Captura de pantalla 2020-09-29 a las 14.13.23](FDA_Submission_Pneumonia.assets/Captura de pantalla 2020-09-29 a las 14.13.23.png)
 
 **Final Threshold and Explanation:** The final threshold was set at 0.4 because this number favours recall. Since this is a medical algorithm, it is very important to classificate all true positives at expenses of classifying some negatives as positives (false positives). The highest F1 score is 0.36 and corresponds to a threshold of 0.44. 
 
-![Captura de pantalla 2020-09-29 a las 14.16.27](/Users/mercedes/Library/Application Support/typora-user-images/Captura de pantalla 2020-09-29 a las 14.16.27.png)
+![Captura de pantalla 2020-09-29 a las 14.16.27](FDA_Submission_Pneumonia.assets/Captura de pantalla 2020-09-29 a las 14.16.27.png)
 
 ### 4. Databases
 The dataset was split following the 80-20% rule, that is: 80% for training and 20% for validation. 
@@ -104,45 +104,45 @@ The biggest limitation of this dataset is that image labels were NLP-extracted s
 
 This dataset contains 112,120 x-ray chest images, obtained from the NIH database. The distribution of the diseases (figure below) shows that the 'No-finding' label is the most common  (53%) followed by Infiltration, Effusion and Atelectasis. Pneumonia only constitutes 1.2% of the hole dataset
 
-![Captura de pantalla 2020-09-29 a las 15.49.32](file:///Users/mercedes/Library/Application%20Support/typora-user-images/Captura%20de%20pantalla%202020-09-29%20a%20las%2015.49.32.png?lastModify=1601389037)
+![Captura de pantalla 2020-09-29 a las 15.49.32](FDA_Submission_Pneumonia.assets/Captura de pantalla 2020-09-29 a las 15.49.32.png)
 
- ![Captura de pantalla 2020-09-29 a las 15.46.33](file:///Users/mercedes/Library/Application%20Support/typora-user-images/Captura%20de%20pantalla%202020-09-29%20a%20las%2015.46.33.png?lastModify=1601389037)
+ ![Captura de pantalla 2020-09-29 a las 15.46.33](FDA_Submission_Pneumonia.assets/Captura de pantalla 2020-09-29 a las 15.46.33.png)
 
 As well, the 30 most common concurrences are shown in the figure below. Stands our infiltration, followed by edema + infiltration and so on. 
 
-![Captura de pantalla 2020-09-29 a las 15.51.14](file:///Users/mercedes/Library/Application%20Support/typora-user-images/Captura%20de%20pantalla%202020-09-29%20a%20las%2015.51.14.png?lastModify=1601389037)
+![Captura de pantalla 2020-09-29 a las 15.51.14](FDA_Submission_Pneumonia.assets/Captura de pantalla 2020-09-29 a las 15.51.14.png)
 
 
 
 The gender distribution shows that there are more male than female figures (ratio 3:2 approximately). 
 
-![Captura de pantalla 2020-09-29 a las 15.53.20](file:///Users/mercedes/Library/Application%20Support/typora-user-images/Captura%20de%20pantalla%202020-09-29%20a%20las%2015.53.20.png?lastModify=1601389037)
+![Captura de pantalla 2020-09-29 a las 15.53.20](FDA_Submission_Pneumonia.assets/Captura de pantalla 2020-09-29 a las 15.53.20.png)
 
 The hole dataset contains images from patients aging less than 90 years, but the bulk of patients covers 20-70 years.. 
 
-![Captura de pantalla 2020-09-29 a las 15.54.44](file:///Users/mercedes/Desktop/Captura%20de%20pantalla%202020-09-29%20a%20las%2015.54.44.png?lastModify=1601389037)
+![Captura de pantalla 2020-09-29 a las 15.54.44](FDA_Submission_Pneumonia.assets/Captura de pantalla 2020-09-29 a las 15.54.44.png)
 
 
 
 There are two possible patient positions: PA or AP. As we can see, the PA view dominates over the AP. 
 
-![Captura de pantalla 2020-09-29 a las 15.59.38](file:///Users/mercedes/Library/Application%20Support/typora-user-images/Captura%20de%20pantalla%202020-09-29%20a%20las%2015.59.38.png?lastModify=1601389037)
+![Captura de pantalla 2020-09-29 a las 15.59.38](FDA_Submission_Pneumonia.assets/Captura de pantalla 2020-09-29 a las 15.59.38.png)
 
 
 
 For patients contaning Pneumonia, this graphs are as follows: 
 
-![Captura de pantalla 2020-09-29 a las 16.02.52](file:///Users/mercedes/Library/Application%20Support/typora-user-images/Captura%20de%20pantalla%202020-09-29%20a%20las%2016.02.52.png?lastModify=1601389037)
+<img src="FDA_Submission_Pneumonia.assets/Captura de pantalla 2020-09-29 a las 16.02.52.png" alt="Captura de pantalla 2020-09-29 a las 16.02.52" />
 
-![Captura de pantalla 2020-09-29 a las 16.03.05](file:///Users/mercedes/Library/Application%20Support/typora-user-images/Captura%20de%20pantalla%202020-09-29%20a%20las%2016.03.05.png?lastModify=1601389037)
+![Captura de pantalla 2020-09-29 a las 16.03.05](FDA_Submission_Pneumonia.assets/Captura de pantalla 2020-09-29 a las 16.03.05.png)
 
-![Captura de pantalla 2020-09-29 a las 16.03.15](file:///Users/mercedes/Library/Application%20Support/typora-user-images/Captura%20de%20pantalla%202020-09-29%20a%20las%2016.03.15.png?lastModify=1601389037)
+![Captura de pantalla 2020-09-29 a las 16.03.15](FDA_Submission_Pneumonia.assets/Captura de pantalla 2020-09-29 a las 16.03.15.png)
 
 
 
 That is: the ratio of male:female images is approximately equal, patients with pneumonia are mostly aging 45-65 years and for pneumonia cases the dominant view is AP. An example of 20 images is shown below. 
 
-![Captura de pantalla 2020-09-29 a las 16.13.01](file:///Users/mercedes/Library/Application%20Support/typora-user-images/Captura%20de%20pantalla%202020-09-29%20a%20las%2016.13.01.png?lastModify=1601389037)
+![Captura de pantalla 2020-09-29 a las 16.13.01](FDA_Submission_Pneumonia.assets/Captura de pantalla 2020-09-29 a las 16.13.01.png)
 
 **Ground Truth Acquisition Methodology:** The NIH dataset radiologist reports were mined using Natural Language Processing (NLP) to create the disease labels from the associated radiology reports. The silver standard involves hiring several radiologists to each make their own diagnosis of an image. The final diagnosis is then determined by a voting system across all of the radiologists’ labels for each image. Note, sometimes radiologists’ experience levels are taken into account and votes are weighted by years of experience.
 
